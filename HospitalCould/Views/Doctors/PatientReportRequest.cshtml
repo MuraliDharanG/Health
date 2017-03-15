@@ -1,0 +1,34 @@
+﻿@model HospitalCloud.Models.CloudFiles
+
+
+<h2>Send Request</h2>
+
+<form method="post" action="@Url.Action("PatientReportRequest", "Doctors")">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CloudFiles</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DoctorId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DoctorId)
+            @Html.ValidationMessageFor(model => model.DoctorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientId)
+            @Html.ValidationMessageFor(model => model.PatientId)
+        </div>
+
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+    </fieldset>
+</form>
+

@@ -1,0 +1,24 @@
+﻿
+@using System.Data
+@using HospitalCould;
+
+@if (TempData.ContainsKey("Toastr"))
+{
+    Toastr toastr = TempData["Toastr"] as Toastr;
+    @ToastrBuilder.ShowToastMessages(toastr);
+}
+@{
+    Toastr tostmessage = new Toastr();
+    tostmessage.ShowCloseButton = true;
+    foreach (ModelState modelState in ViewData.ModelState.Values)
+    {
+        foreach (ModelError error in modelState.Errors)
+        {
+           
+            tostmessage.AddToastMessage("Error", error.ErrorMessage, ToastType.Error);
+        
+         
+        }
+    }
+    @ToastrBuilder.ShowToastMessages(tostmessage);
+}

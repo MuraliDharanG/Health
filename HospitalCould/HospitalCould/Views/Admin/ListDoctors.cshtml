@@ -1,0 +1,87 @@
+﻿@model IEnumerable<HospitalCloud.Models.UserRegisteration>
+
+@{
+    ViewBag.Title = "ListDoctors";
+}
+
+<style>
+    .createuserbtn {
+        position: relative;
+        bottom: 45px;
+        float: right;
+    }
+</style>
+
+<h2>ListDoctors</h2>
+<div class="col-xs-12">
+    <button class="btn btn-primary createuserbtn" onclick="CreateDoctor()">Add New Doctors</button>
+</div>
+
+<div>
+
+    <table id="myTable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model=>model.DoctorId)</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.DoctorId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        
+                        <a href="@Url.Action("EditDoctor", "Admin", new { Id = item.Id })">Edit Doctor</a>
+                     
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+    function CreateDoctor() {
+        debugger;
+        window.location.href = "@Url.Action("CreateDoctors", "Admin")";
+    }
+</script>

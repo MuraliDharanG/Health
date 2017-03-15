@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HospitalCloud.Models.SkDetails>
+
+@{
+    ViewBag.Title = "OtherRequest";
+}
+
+<h2>OtherRequest</h2>
+
+
+<table id="otherreq">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataOfResponse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponseDetails)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DownloadDetails)
+            </th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                 @item.Id.ToString()
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfRequest)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataOfResponse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponseDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DownloadDetails)
+                </td>
+                <td>
+                    @if (item.ResponseDetails != "approved")
+                    {
+                        <a href="@Url.Action("OtherRequestForApproved", "Doctors", new { status = "Approved", RID = item.Id })">Approve</a>
+                    }
+                    else
+                    {
+                        <label>Already Approved</label>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script>
+    $(document).ready(function () {
+        $('#otherreq').DataTable();
+    });
+    function AddPatient() {
+        debugger;
+        window.location.href = "@Url.Action("AddPatient", "Doctors")";
+    }
+</script>

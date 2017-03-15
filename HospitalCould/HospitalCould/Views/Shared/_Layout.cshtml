@@ -1,0 +1,176 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.0.2 -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- font Awesome -->
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="~/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style --> 
+    <link href="~/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
+    
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+       <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+       <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+      <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
+</head>
+<body class="skin-black">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+            Hospital
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+        <h5>Hospital Mangaement with Mongo DB </h5>
+
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="~/Images/usericon.png" />
+
+                    </div>
+                    <div class="pull-left info">
+                        <p>Hello,  @HttpContext.Current.User.Identity.Name</p>
+
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search..." />
+                        <span class="input-group-btn">
+                            <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    @if (((HospitalCloud.ICustomPrincipal)HttpContext.Current.User).Role == "Doctor")
+                    {
+                        <li class="">
+                            <a href="@Url.Action("ListPatients", "Doctors")">
+                                <i class="fa fa-dashboard"></i><span>List Patients</span>
+                            </a>
+                        </li>
+                       
+                        <li class="">
+                            <a href="@Url.Action("UploadPatientReport", "Doctors")">
+                                <i class="fa fa-dashboard"></i><span>Patient Report Upload</span>
+                            </a>
+                        </li>
+                         <li class="">
+                            <a href="@Url.Action("ListPatientReport", "Doctors")">
+                                <i class="fa fa-dashboard"></i><span>Patient Reports</span>
+                            </a>
+                        </li>
+                           <li class="">
+                            <a href="@Url.Action("PatientReportRequest", "Doctors")">
+                                <i class="fa fa-dashboard"></i><span>Send Request</span>
+                            </a>
+                        </li>
+                           <li class="">
+                            <a href="@Url.Action("OtherRequest", "Doctors")">
+                                <i class="fa fa-dashboard"></i><span>Other Requests</span>
+                            </a>
+                        </li>
+                         <li class="">
+                             <a href="@Url.Action("Logout", "Login")">
+                                 <i class="fa fa-signout"></i><span>Sign Out</span>
+                             </a>
+                        </li>
+                    }
+                    else if (((HospitalCloud.ICustomPrincipal)HttpContext.Current.User).Role == "Admin")
+                    {
+                        <li class=""> 
+                            <a href="@Url.Action("ListDoctors", "Admin")">
+                                <i class="fa fa-dashboard"></i><span>Doctors</span>
+                            </a>
+                        </li>
+                           <li class="">
+                             <a href="@Url.Action("Logout", "Login")">
+                                 <i class="fa fa-signout"></i><span>Sign Out</span>
+                             </a>
+                        </li>
+                    }
+                    else{
+                       
+                        <li class=""> 
+                            <a href="@Url.Action("Reports", "Patient")">
+                                <i class="fa fa-dashboard"></i><span>My Reports</span>
+                            </a>
+                        </li>
+                         <li class="">
+                             <a href="@Url.Action("Logout", "Login")">
+                                 <i class="fa fa-signout"></i><span>Sign Out</span>
+                             </a>
+                        </li>
+                    }
+
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+
+            <section class="content">
+
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </aside>
+        <!-- /.right-side -->
+    </div>
+    <!-- ./wrapper -->
+
+
+    <!-- jQuery 2.0.2 -->
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>*@
+    <script src="~/Content/dataTables.bootstrap.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>*@
+     
+      <script src="@Url.Content("~/Content/jquery.dataTables.min.js")"></script>
+
+    @**@
+    <!-- Bootstrap -->
+  @*  <script src="@Url.Content("~/js/jquery-ui-1.10.3.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.js")"></script>*@
+    @*<script src="js/plugins/bootstrap.min.js" type="text/javascript"></script>*@
+    @*<script src="~/js/bootstrap.js"></script>*@
+@*    <script src="@Url.Content("~/js/AdminLTE/dashboard.js")"></script>
+    <script src="@Url.Content("~/js/AdminLTE/app.js")"></script>*@
+    <!-- AdminLTE App -->
+   <script src="@Url.Content("~/Scripts/toastr.min.js")"></script>
+    @*<script src="js/plugins/AdminLTE/app.js" type="text/javascript"></script>*@
+    @Html.Partial("_Toastr")
+
+   
+</body>
+</html>
+

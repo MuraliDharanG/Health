@@ -1,0 +1,73 @@
+﻿@model HospitalCloud.Models.CloudFiles
+
+@{
+    ViewBag.Title = "UploadPatientReport";
+}
+
+<h2>UploadPatientReport</h2>
+
+<form method="post" enctype="multipart/form-data" action="@Url.Action("UploadPatientReport", "Doctors")">
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CloudFiles</legend>
+
+
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientId)
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.PatientId)*@
+            @Html.DropDownList("PatientId", ((SelectList)ViewBag.PatientList));
+            @Html.ValidationMessageFor(model => model.PatientId)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HospitalName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HospitalName)
+            @Html.ValidationMessageFor(model => model.HospitalName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.State)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.State)
+            @Html.ValidationMessageFor(model => model.State)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Filename)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="report" id="report" />
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.topic)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.topic)
+            @Html.ValidationMessageFor(model => model.topic)
+        </div>
+               
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>
+

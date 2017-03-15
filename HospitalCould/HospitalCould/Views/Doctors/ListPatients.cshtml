@@ -1,0 +1,82 @@
+﻿@model IEnumerable<HospitalCloud.Models.PatientRegistration>
+
+@{
+    ViewBag.Title = "ListPatients";
+}
+
+<style>
+    .createuserbtn {
+        position: relative;
+        bottom: 45px;
+        float: right;
+    }
+</style>
+
+<h2>ListDoctors</h2>
+<div class="col-xs-12">
+    <button class="btn btn-primary createuserbtn" onclick="AddPatient()">Create Users</button>
+</div>
+
+<div>
+    <table id="patienttable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                        <a href="@Url.Action("EditPatientInfo", "Doctors", new { Id=item.Id })">Edit Patients</a>
+             
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#patienttable').DataTable();
+    });
+    function AddPatient() {
+        debugger;
+        window.location.href = "@Url.Action("AddPatient", "Doctors")";
+    }
+</script>

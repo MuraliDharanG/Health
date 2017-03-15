@@ -1,0 +1,50 @@
+﻿@model HospitalCloud.Models.CloudFiles
+
+
+<h2>Send Request</h2>
+
+<form method="post" action="@Url.Action("PatientReportRequest", "Doctors")">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <div class="col-xs-8">
+            <div class="form-group">
+                <label for="DoctorId" class="control-label col-xs-2" style="text-align: left !important">Doctor Id</label>
+                <div class="col-xs-10">
+                    <input type="text" id="DoctorId" name="DoctorId" class="form-control" placeholder="DoctorId" required />
+
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <div class="form-group">
+                <label for="PatientId" class="control-label col-xs-2" style="text-align: left !important">Patient Id </label>
+                <div class="col-xs-10">
+                    <input type="text" id="PatientId" name="PatientId" class="form-control" placeholder="PatientId" required />
+
+                </div>
+            </div>
+             <div style="height: 20px;"></div>
+            <div class="form-group">
+               
+                <p>
+                    <input type="button" value="Back" class="btn btn-primary" onclick="Back()" style="float: right; margin-right: 20px; width: 100px;" />
+                    <input type="submit" value="Search" class="btn btn-primary" style="float: right; margin-right: 20px; width: 100px;" />
+                </p>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<style>
+    .form-group {
+        margin-top: 25px !important;
+    }
+</style>
+ <script>
+
+        function Back() {
+            window.history.back();
+        }
+    </script>

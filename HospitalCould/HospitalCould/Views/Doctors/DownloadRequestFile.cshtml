@@ -1,0 +1,48 @@
+﻿@model string
+<form method="post" action="@Url.Action("DownloadRequestForFile", "Doctors")">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div>
+            <legend>CloudFiles</legend>
+
+            <div class="form-group" style="display: none">
+                <div class="editor-label">
+                    <label>FileId</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" name="fileId" value="@ViewBag.FileId" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Name" class="control-label col-xs-2" style="text-align: left !important">Security Key</label>
+                <div class="col-xs-10">
+                    <input type="text" id="SecurityKey" name="SecurityKey" class="form-control" required placeholder="SecurityKey" />
+
+                </div>
+            </div>
+      
+            <div class="row form-group" style="top:20px;position:relative">
+                <div class="col-xs-offset-6">
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn bg-olive btn-block">Search</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="button" class="btn bg-olive btn-block" onclick="Back()">back</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+<script>
+
+    function Back() {
+        window.history.back();
+    }
+</script>

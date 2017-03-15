@@ -1,0 +1,27 @@
+﻿@model string
+<form method="post" action="@Url.Action("DownloadRequestForFile", "Doctors")">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CloudFiles</legend>
+
+        <div class="editor-label">
+          <label>FileId</label>
+        </div>
+        <div class="editor-field">
+            <input type="text" name="fileId" value="@ViewBag.FileId" readonly />
+        </div>
+
+        <div class="editor-label">
+           <label>Security Key</label>
+        </div>
+        <div class="editor-field">
+            <input type="text" name="SecurityKey" value="" />
+        </div>
+
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+    </fieldset>
+</form>

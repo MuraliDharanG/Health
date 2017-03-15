@@ -1,0 +1,77 @@
+﻿@model HospitalCloud.Models.PatientRegistration
+
+@{
+    ViewBag.Title = "AddPatient";
+}
+
+<style>
+    .form-group {
+        margin-top: 20px !important;
+    }
+</style>
+
+<h2>AddPatient</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PatientRegistration</legend>
+        <div class="col-xs-8">
+            <div class="form-group">
+                <label for="Name" class="control-label col-xs-2" style="text-align: left !important">PatientName</label>
+                <div class="col-xs-10">
+                    <input type="text" id="PatientName" name="PatientName" class="form-control" required placeholder="PatientName" />
+
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <div class="form-group">
+                <label for="Email" class="control-label col-xs-2" style="text-align: left !important">Email</label>
+                <div class="col-xs-10">
+                    <input type="text" id="Email" name="Email" class="form-control" placeholder="Email" required />
+
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <div class="form-group">
+                <label for="UserName" class="control-label col-xs-2" style="text-align: left !important">UserName</label>
+                <div class="col-xs-10">
+                    <input type="text" id="UserName" name="UserName" class="form-control" placeholder="UserName" required />
+
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <div class="form-group">
+                <label for="Password" class="control-label col-xs-2" style="text-align: left !important">Password</label>
+                <div class="col-xs-10">
+                    <input type="text" id="Password" name="Password" class="form-control" placeholder="Password" required />
+
+                </div>
+            </div>
+
+            <div style="height: 20px;"></div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-6">
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn bg-olive btn-block">Create</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="button" class="btn bg-olive btn-block" onclick="Back()">back</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}
+<script>
+
+    function Back() {
+        window.history.back();
+    }
+</script>
+
+
